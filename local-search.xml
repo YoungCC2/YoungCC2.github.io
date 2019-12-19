@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="undefinedexample/0/"/>
+    <url>example/0/</url>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>example</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>设计模式-适配器模式</title>
+    <link href="undefineddesign/2/"/>
+    <url>design/2/</url>
+    
+    <content type="html"><![CDATA[<h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><h5 id="3-代理模式"><a href="#3-代理模式" class="headerlink" title="3.代理模式"></a>3.代理模式</h5><pre><code>代理模式 当一个对象无法直接引用另外一个对象时 我们通过创造一个代理对象 来完成代理代理对象可以完全解决被代理对象与外界对象之间的耦合通过一个科学家操纵机器狗的例子来理解代理模式</code></pre><pre><code class="javascript">    var Dog = function(name){        this.name = name;    };    Dog.prototype.getSay = function() {        return this.name;    };    // 添加了一个otherThing 当在进行其他行为时 不能进行getSay方法    Dog.prototype.otherThing = function() {        var curTime = new Date().getHours();        return  curTime &gt;= 20 ? that.getSay() : &#39;&quot;睡觉时间！&quot;&#39;;    }    // 定义机器对象 - 代理对象    var robot = {        doSay: function(dog) {            scientist.doSay(dog.getSay())        }    };    // 定义科学家对象    var scientist = {        doSay: function(name) {            console.log(&#39;my name is&#39; + name);        }    };    robot.doSay(new Dog(&#39;Goofy&#39;)); // &quot;买到了一双高跟鞋&quot;</code></pre><pre><code>可以看出 代理对象也实现了被代理对象的某些方法 这样子保护被代理对象 增加了开销代理模式的应用 有时候会用到缓存方面,比如图片的加载先加载一个默认图，等正真的原图被加载好时再展示出来，这样子增加界面的友好性代理模式还是在解决系统内部的耦合性问题</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>design</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>PS3</tag>
+      
+      <tag>Games</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>first</title>
+    <link href="undefineddesign/1/"/>
+    <url>design/1/</url>
+    
+    <content type="html"><![CDATA[<h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><h5 id="1-外观模式"><a href="#1-外观模式" class="headerlink" title="1.外观模式"></a>1.外观模式</h5><pre><code>外观模式是指 对 多个同一操作的 方法/函数  进行封装 成一个函数统一去调用它可以简化底层接口的复杂性 比较典型的例子就是处理 兼容性的问题例如 在IE的内核 Chrome的Chromium内核 FF的Firefox内核  其监听事件的接口并不一样IE使用attachEvent属性去监听事件 而Chrome等浏览器是通过addEventListener 属性去监听事件因此 当我们要去对DOM节点去进行事件监听时 为避免进行多余的操作 可以封装一个函数而达到解决兼容性的问题</code></pre><blockquote></blockquote><pre><code>&lt;!--例-1--&gt;/**    dom  被监听的节点    type 监听的事件类型 click 等    fn   回调方法*/const addEvent = (dom, type, fn) =&gt;{    if(dom.addEventListener){        //支持addEventListener的浏览器        dom.addEventListener(type,fn,false)    }else if(dom.attachEvent){        //支持attachEvent的 浏览器        dom.attachEvent(&#39;on&#39; + type, fn);    }else {        dom[&#39;on&#39;+type] = fn;    }}&lt;!--例-2--&gt;&lt;!--解决阻值浏览器默认行为的兼容性--&gt;const preventDefault = (event) =&gt;{    var event = event || window.event;    if(event.preventDefault){        event.preventDefault()    }else{        //一般指IE浏览器        event.returnValue = false;    }}</code></pre><hr><pre><code>外观模式 是对接口方法的外层包装，方便外部调用，降低了底层代码的使用复杂性.大部分时候外观模式不需要对接口的具体实现，只需要按照接口使用规则使用即可这也是系统与客户(使用者)的松散耦合,使得系统与客户之间不会因为结构的变化而相互影响</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>design</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  
+</search>
